@@ -1,4 +1,4 @@
-package com.cowday.pennywise
+package com.cowday.pennywise.activities
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
