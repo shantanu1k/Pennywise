@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.cowday.pennywise.ui.homepage.HomeScreen
+import com.cowday.pennywise.ui.navigation.HomeScreen
 import com.cowday.pennywise.ui.theme.PennywiseTheme
 
 class MainActivity : ComponentActivity() {
