@@ -8,5 +8,6 @@ val lightGreen = Color(0xFFDFF7E2)
 val darkBlue = Color(0xFF0068FF)
 val blue = Color(0xFF3299FF)
 
-val darkGreen = Color(0xFF052224)
+val fenceGreen = Color(0xFF052224)
+val darkGreen = Color(0xFF031314)
 val cyprus = Color(0xFF0E3E3E)
