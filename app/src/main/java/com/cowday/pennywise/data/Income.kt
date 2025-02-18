@@ -12,9 +12,13 @@ data class Income(
     override val transactionType: TransactionType = TransactionType.INCOME,
 ): Transaction(name, date, amount, title, categoryType, message, transactionType)
 
-enum class IncomeCategoryType(val strValue: String): CategoryType {
+enum class IncomeCategoryType(private val strValue: String): CategoryType {
     SALARY("Salary"),
     BONUS("Bonus"),
     FREELANCE("Freelance"),
-    GIFT("Gift")
+    GIFT("Gift");
+
+    override fun getStrValue(): String {
+        return this.strValue
+    }
 }

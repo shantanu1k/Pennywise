@@ -12,7 +12,9 @@ open class Transaction(
     open val transactionType: TransactionType,
 )
 
-interface CategoryType
+interface CategoryType {
+    fun getStrValue(): String
+}
 
 enum class TransactionType {
     INCOME, EXPENSE;

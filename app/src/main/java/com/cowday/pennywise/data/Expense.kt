@@ -12,7 +12,7 @@ data class Expense(
     override val transactionType: TransactionType = TransactionType.EXPENSE,
 ): Transaction(name, date, amount, title, categoryType, message, transactionType)
 
-enum class ExpenseCategoryType(val strValue: String): CategoryType {
+enum class ExpenseCategoryType(private val strValue: String): CategoryType {
     FOOD("Food"),
     TRANSPORT("Transport"),
     MEDICINE("Medicine"),
@@ -20,4 +20,8 @@ enum class ExpenseCategoryType(val strValue: String): CategoryType {
     RENT("Rent"),
     GIFTS("Gifts"),
     ENTERTAINMENT("Entertainment");
+
+    override fun getStrValue(): String {
+        return this.strValue
+    }
 }
