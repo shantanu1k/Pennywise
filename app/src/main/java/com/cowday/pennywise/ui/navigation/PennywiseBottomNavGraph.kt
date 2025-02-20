@@ -1,6 +1,7 @@
 package com.cowday.pennywise.ui.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -11,10 +12,11 @@ import com.cowday.pennywise.ui.profile.ProfileScreen
 import com.cowday.pennywise.ui.transactions.TransactionScreen
 
 @Composable
-fun PennywiseBottomNavGraph(navController: NavHostController) {
+fun PennywiseBottomNavGraph(modifier: Modifier, navController: NavHostController) {
     NavHost(
         navController = navController,
         startDestination = PennywiseBottomNavScreen.HOME.route,
+        modifier = modifier,
     ) {
         composable(route = PennywiseBottomNavScreen.HOME.route) {
             HomeScreen()
