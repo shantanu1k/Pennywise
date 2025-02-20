@@ -16,7 +16,7 @@ interface CategoryType {
     fun getStrValue(): String
 }
 
-enum class TransactionType {
-    INCOME, EXPENSE;
+enum class TransactionType(val strValue: String) {
+    INCOME("Income"), EXPENSE("Expense");
 }
 
