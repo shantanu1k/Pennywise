@@ -13,6 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.cowday.pennywise.ui.theme.green
@@ -65,7 +66,12 @@ fun DurationRangeItem(
             .padding(16.dp),
         contentAlignment = Alignment.Center
     ) {
-        Text(text = duration.strValue)
+        Text(
+            text = duration.strValue,
+            style = MaterialTheme.typography.labelLarge,
+            overflow = TextOverflow.Ellipsis,
+            maxLines = 1
+        )
     }
 }
 
