@@ -2,4 +2,5 @@
     <string name="app_name">Pennywise</string>
     <string name="total_expense">Total Expense</string>
     <string name="total_income">Total Income</string>
+    <string name="label_income_and_expenses">Income &amp; Expense</string>
 </resources>
