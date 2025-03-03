@@ -28,7 +28,7 @@ fun AnalysisScreen(
         modifier = Modifier
             .fillMaxSize()
             .background(color = MaterialTheme.colorScheme.primary)
-            .padding(top = 16.dp),
+            .padding(top = 8.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         AppBar("Analysis")
