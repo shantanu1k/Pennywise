@@ -1,64 +1,83 @@
 package com.cowday.pennywise.ui.transactions
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.cowday.pennywise.R
 import com.cowday.pennywise.data.ExpenseCategoryType
-import com.cowday.pennywise.ui.homepage.HomePageTransactionHistoryItem
+import com.cowday.pennywise.data.Transaction
+import com.cowday.pennywise.data.TransactionType
+import com.cowday.pennywise.data.groupTransactionByDate
+import com.cowday.pennywise.ui.homepage.HomePageTransactions
+import com.cowday.pennywise.ui.theme.PennywiseTheme
+import java.math.BigDecimal
 
 @Composable
-fun TransactionHistory(modifier: Modifier = Modifier) {
-    Column(
+fun TransactionHistory(
+    transactionMap: Map<String, List<Transaction>>,
+    modifier: Modifier = Modifier
+) {
+    LazyColumn(
         modifier = modifier
             .fillMaxSize()
             .background(color = MaterialTheme.colorScheme.surface)
-            .padding(horizontal = 16.dp, vertical = 24.dp)
-            .verticalScroll(state = rememberScrollState()),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .padding(horizontal = 16.dp)
+            .padding(top = 24.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
     ) {
-        LazyColumn {
+        transactionMap.forEach { (month, transactions) ->
+            item {
+                Text(
+                    modifier = Modifier
+                        .padding(horizontal = 8.dp),
+                    text = month,
+                    style = MaterialTheme.typography.titleSmall
+                )
+                Spacer(modifier = Modifier.height(4.dp))
+            }
 
+            items(transactions) { item ->
+                HomePageTransactions(
+                    icon = item.categoryType.getIcon(),
+                    category = item.categoryType,
+                    timestamp = item.date,
+                    transactionName = item.name ?: "-",
+                    amount = item.amount.toString()
+                )
+            }
         }
     }
 }
 
-val homePageTransactionHistory = listOf(
-    HomePageTransactionHistoryItem(
-        icon = R.drawable.icon_gift,
-        category = ExpenseCategoryType.GIFTS,
-        timestamp = "12:01, Dec 4",
-        transactionName = "A Gift",
-        amount = "324"
-    ),
-    HomePageTransactionHistoryItem(
-        icon = R.drawable.icon_medicine,
-        category = ExpenseCategoryType.MEDICINE,
-        timestamp = "10:44, Sept 30",
-        transactionName = "Paracetamol",
-        amount = "20"
-    ),
-    HomePageTransactionHistoryItem(
-        icon = R.drawable.icon_transport,
-        category = ExpenseCategoryType.TRANSPORT,
-        timestamp = "3:19, Jan 17",
-        transactionName = "Bus",
-        amount = "16"
-    )
-)
-
 @Preview
 @Composable
 private fun TransactionHistoryPreview(modifier: Modifier = Modifier) {
-    TransactionHistory()
+    val transactions = listOf(
+        Transaction("John Doe", "2025-02-01T14:30:00.000+0000", BigDecimal(50.75), "Grocery Shopping", ExpenseCategoryType.GROCERIES, "Purchased fruits and vegetables", TransactionType.EXPENSE),
+        Transaction("Jane Smith", "2025-02-02T14:30:00.000+0000", BigDecimal(20.00), "Bus Ticket", ExpenseCategoryType.TRANSPORT, "Monthly bus pass", TransactionType.EXPENSE),
+        Transaction("Mike Johnson", "2025-04-03T14:30:00.000+0000", BigDecimal(100.50), "Concert Ticket", ExpenseCategoryType.ENTERTAINMENT, "Bought tickets for the concert", TransactionType.EXPENSE),
+        Transaction("Sarah Lee", "2025-04-04T14:30:00.000+0000", BigDecimal(200.00), "Electric Bill", ExpenseCategoryType.RENT, "Paid monthly electricity bill", TransactionType.EXPENSE),
+        Transaction("David Miller", "2025-06-05T14:30:00.000+0000", BigDecimal(150.00), "Gym Membership", ExpenseCategoryType.MEDICINE, "Annual gym membership renewal", TransactionType.EXPENSE),
+        Transaction("Emily Davis", "2025-06-06T14:30:00.000+0000", BigDecimal(75.00), "Clothing Store", ExpenseCategoryType.GIFTS, "Bought a new jacket", TransactionType.EXPENSE),
+        Transaction("John Doe", "2025-11-07T14:30:00.000+0000", BigDecimal(500.00), "Salary", ExpenseCategoryType.MEDICINE, "Monthly salary received", TransactionType.EXPENSE),
+        Transaction("Anna Brown", "2025-11-08T14:30:00.000+0000", BigDecimal(40.00), "Takeout Dinner", ExpenseCategoryType.FOOD, "Ordered dinner from a restaurant", TransactionType.EXPENSE),
+        Transaction("Chris Wilson", "2025-08-09T14:30:00.000+0000", BigDecimal(30.00), "Taxi Fare", ExpenseCategoryType.TRANSPORT, "Taxi fare to the airport", TransactionType.EXPENSE),
+        Transaction("Laura Harris", "2025-08-10T14:30:00.000+0000", BigDecimal(200.00), "Medical Checkup", ExpenseCategoryType.MEDICINE, "Routine medical checkup", TransactionType.EXPENSE)
+    )
+    PennywiseTheme {
+        Surface {
+            TransactionHistory(groupTransactionByDate(transactions))
+        }
+    }
 }
