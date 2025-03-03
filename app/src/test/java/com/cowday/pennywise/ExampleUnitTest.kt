@@ -1,5 +1,10 @@
 package com.cowday.pennywise
 
+import com.cowday.pennywise.data.ExpenseCategoryType
+import com.cowday.pennywise.data.ExtractedDateAndTime
+import com.cowday.pennywise.data.Transaction
+import com.cowday.pennywise.data.TransactionType
+import com.cowday.pennywise.data.extractDateAndTime
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -9,9 +14,28 @@ import org.junit.Assert.*
  *
  * See [testing documentation](http://d.android.com/tools/testing).
  */
-class ExampleUnitTest {
+class DateExtractUnitTest {
     @Test
-    fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+    fun date_isExtractedCorrectly() {
+        val transaction = Transaction(
+            name = "expense",
+            date = "2024-12-03T12:40:44.527+0000",
+            amount = "23111".toBigDecimal(),
+            title = "Grocery",
+            categoryType = ExpenseCategoryType.GROCERIES,
+            transactionType = TransactionType.EXPENSE
+        )
+
+        val expected = ExtractedDateAndTime(
+            year = 2024,
+            month = 12,
+            day = 3,
+            hour = 12,
+            minute = 40,
+            second = 44
+        )
+
+        val actual = transaction.date.extractDateAndTime()
+        assertEquals(expected, actual)
     }
 }
