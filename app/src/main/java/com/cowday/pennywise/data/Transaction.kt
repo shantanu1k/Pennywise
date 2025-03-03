@@ -14,6 +14,7 @@ open class Transaction(
 
 interface CategoryType {
     fun getStrValue(): String
+    fun getIcon(): Int
 }
 
 enum class TransactionType(val strValue: String) {

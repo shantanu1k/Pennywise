@@ -1,5 +1,6 @@
 package com.cowday.pennywise.data
 
+import com.cowday.pennywise.R
 import java.math.BigDecimal
 
 data class Income(
@@ -15,10 +16,17 @@ data class Income(
 enum class IncomeCategoryType(private val strValue: String): CategoryType {
     SALARY("Salary"),
     BONUS("Bonus"),
-    FREELANCE("Freelance"),
     GIFT("Gift");
 
     override fun getStrValue(): String {
         return this.strValue
+    }
+
+    override fun getIcon(): Int {
+        return when (this) {
+            SALARY -> R.drawable.ic_salary
+            BONUS -> R.drawable.ic_bonus
+            GIFT -> R.drawable.icon_gift
+        }
     }
 }

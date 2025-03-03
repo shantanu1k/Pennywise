@@ -1,5 +1,6 @@
 package com.cowday.pennywise.data
 
+import com.cowday.pennywise.R
 import java.math.BigDecimal
 
 data class Expense(
@@ -23,5 +24,17 @@ enum class ExpenseCategoryType(private val strValue: String): CategoryType {
 
     override fun getStrValue(): String {
         return this.strValue
+    }
+
+    override fun getIcon(): Int {
+        return when (this) {
+            FOOD -> R.drawable.icon_food
+            TRANSPORT -> R.drawable.icon_transport
+            MEDICINE -> R.drawable.icon_medicine
+            GROCERIES -> R.drawable.icon_groceries
+            RENT -> R.drawable.icon_rent
+            GIFTS -> R.drawable.icon_gift
+            ENTERTAINMENT -> R.drawable.ic_entertainment
+        }
     }
 }
