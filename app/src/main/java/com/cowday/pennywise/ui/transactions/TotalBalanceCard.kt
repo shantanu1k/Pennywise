@@ -19,16 +19,17 @@ import com.cowday.pennywise.ui.theme.honeyDew
 
 @Composable
 fun TotalBalanceCard(
-    amount: String
+    amount: String,
+    modifier: Modifier = Modifier
 ) {
     Box(
-        modifier = Modifier
-            .padding(8.dp)
+        modifier = modifier
             .clip(
                 RoundedCornerShape(percent = 10)
             )
             .fillMaxWidth()
-            .background(color = honeyDew),
+            .background(color = honeyDew)
+            .padding(4.dp),
         contentAlignment = Alignment.Center
     ) {
         Column(
@@ -41,7 +42,7 @@ fun TotalBalanceCard(
             )
             Text(
                 text = "$$amount",
-                style = MaterialTheme.typography.titleSmall
+                style = MaterialTheme.typography.titleLarge
             )
         }
     }
