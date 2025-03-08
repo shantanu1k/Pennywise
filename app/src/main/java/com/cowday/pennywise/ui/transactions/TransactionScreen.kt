@@ -30,9 +30,9 @@ import com.cowday.pennywise.ui.theme.PennywiseTheme
 
 @Composable
 fun TransactionScreen(
-    navController: NavController,
-    transactions: Map<String, List<Transaction>>
+    navController: NavController
 ) {
+    val transactions = remember { mapOf<String, List<Transaction>>() }
     var selectedTab by remember { mutableStateOf<TransactionType?>(null) }
     Column(
         modifier = Modifier
@@ -101,8 +101,7 @@ fun TransactionScreen(
 private fun TransactionScreenPreview() {
     PennywiseTheme {
         TransactionScreen(
-            NavController(LocalContext.current),
-            mapOf()
+            NavController(LocalContext.current)
         )
     }
 }
