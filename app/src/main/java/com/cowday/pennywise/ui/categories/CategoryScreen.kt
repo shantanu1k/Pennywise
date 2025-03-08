@@ -34,8 +34,7 @@ fun CategoryScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(16.dp))
         FinanceSummary()
         Spacer(modifier = Modifier.height(24.dp))
-        CategoryList(
-            categoryList = IncomeCategoryType.entries + ExpenseCategoryType.entries,
+        CategoryContainer(
             modifier = Modifier.clip(
                 RoundedCornerShape(
                     topStartPercent = 10,
