@@ -3,4 +3,13 @@
     <string name="total_expense">Total Expense</string>
     <string name="total_income">Total Income</string>
     <string name="label_income_and_expenses">Income &amp; Expense</string>
+    <string name="label_bonus">Bonus</string>
+    <string name="label_entertainment">Entertainment</string>
+    <string name="label_salary">Salary</string>
+    <string name="label_food">Food</string>
+    <string name="label_gift">Gift</string>
+    <string name="label_groceries">Groceries</string>
+    <string name="label_medicine">Medicine</string>
+    <string name="label_rent">Rent</string>
+    <string name="label_transport">Transport</string>
 </resources>
