@@ -15,8 +15,7 @@ data class Income(
 
 enum class IncomeCategoryType(private val strValue: String): CategoryType {
     SALARY("Salary"),
-    BONUS("Bonus"),
-    GIFT("Gift");
+    BONUS("Bonus");
 
     override fun getStrValue(): String {
         return this.strValue
@@ -26,7 +25,6 @@ enum class IncomeCategoryType(private val strValue: String): CategoryType {
         return when (this) {
             SALARY -> R.drawable.ic_salary
             BONUS -> R.drawable.ic_bonus
-            GIFT -> R.drawable.icon_gift
         }
     }
 }
