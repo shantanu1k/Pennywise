@@ -5,6 +5,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.cowday.pennywise.ui.categories.screens.CategoryAddTransaction
 import com.cowday.pennywise.ui.categories.screens.CategoryOverview
 import com.cowday.pennywise.ui.categories.screens.CategoryTransactions
 
@@ -15,17 +16,25 @@ fun CategoryNavGraph(
 ) {
     NavHost(
         navController = navController,
-        startDestination = CategoryNavScreen.OVERVIEW.route,
+        startDestination = CategoryOverview.route,
         modifier = modifier
     ) {
-        composable(CategoryNavScreen.OVERVIEW.route) {
+        composable(CategoryOverview.route) {
             CategoryOverview(navController)
         }
-        composable(CategoryNavScreen.TRANSACTIONS.route) {
-            CategoryTransactions(navController)
+        composable(
+            route = CategoryTransactions.routeWithArgs,
+            arguments = CategoryTransactions.arguments
+        ) {
+            val categoryType = it.arguments?.getString(CategoryTransactions.categoryType)
+            CategoryTransactions(navController, categoryType)
         }
-        composable(CategoryNavScreen.ADD_TRANSACTION.route) {
-            CategoryTransactions(navController)
+        composable(
+            route = CategoryAddTransaction.routeWithArgs,
+            arguments = CategoryAddTransaction.arguments
+        ) {
+            val categoryType = it.arguments?.getString(CategoryAddTransaction.categoryType)
+            CategoryAddTransaction(navController, categoryType)
         }
     }
 }
